@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: motamonteiro
- * Date: 30/07/15
- * Time: 00:57
- */
 
 namespace GeProj\OAuth;
 

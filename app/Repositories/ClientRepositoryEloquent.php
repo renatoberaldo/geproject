@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: motamonteiro
- * Date: 22/07/15
- * Time: 23:44
- */
+
 
 namespace GeProj\Repositories;
 
