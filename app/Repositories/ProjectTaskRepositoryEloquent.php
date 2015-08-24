@@ -5,6 +5,7 @@ namespace GeProj\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use GeProj\Entities\ProjectTask;
+use GeProj\Presenters\ProjectTaskPresenter;
 
 /**
  * Class ProjectTaskRepositoryEloquent
@@ -28,5 +29,10 @@ class ProjectTaskRepositoryEloquent extends BaseRepository implements ProjectTas
     public function boot()
     {
         $this->pushCriteria( app(RequestCriteria::class) );
+    }
+
+    public function presenter()
+    {
+        return ProjectTaskPresenter::class;
     }
 }

@@ -36,22 +36,38 @@ class ProjectRepositoryEloquent extends BaseRepository implements ProjectReposit
 
     public function isOwner($projectId, $userId)
     {
-        $isOwner = $this->model->where(['id'=>$projectId, 'owner_id'=>$userId])->count();
 
-        if($isOwner)
-        {
+        $project = $this->findWhere(['id'=>$projectId, 'owner_id'=>$userId]);
+
+        //Esse ['data'] é por causa do presenter()
+        if($project['data']) {
             return true;
         }
         return false;
+
+    }
+
+    public function showMembers($projectId)
+    {
+        $project = $this->findWhere(['id'=>$projectId]);
+
+        //Esse ['data'] é por causa do presenter()
+        if($project['data']) {
+            return $project['data'][0]['members'];
+        }
+        return "";
     }
 
     public function hasMember($projectId, $memberId)
     {
-        $project = $this->model->where(['id'=>$projectId])->first();
+        $project = $this->findWhere(['id'=>$projectId]);
 
-        foreach($project->members as $member) {
-            if($member->id == $memberId) {
-                return true;
+        //Esse ['data'] é por causa do presenter()
+        if($project['data']) {
+            foreach($project['data'][0]['members'] as $member) {
+                if($member[0]['member_id'] == $memberId){
+                    return true;
+                }
             }
         }
         return false;

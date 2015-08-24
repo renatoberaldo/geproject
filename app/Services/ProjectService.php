@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: motamonteiro
+ * Date: 23/07/15
+ * Time: 00:54
+ */
 
 namespace GeProj\Services;
 
@@ -75,7 +80,15 @@ class ProjectService
 
     public function showMembers($project_id)
     {
-        return $this->projectMemberService->showMembers($project_id);
+        $members = $this->repository->showMembers($project_id);
+
+        if($members == ""){
+            return [
+                'error' => true,
+                'message' => "error on show project members"
+            ];
+        }
+        return $members;
     }
 
     public function addMember(array $data)
@@ -90,7 +103,7 @@ class ProjectService
 
     public function isMember(array $data)
     {
-        $this->projectMemberService->isMember($data);
+        return $this->projectMemberService->isMember($data);
     }
 
     public function createFile(array $data)

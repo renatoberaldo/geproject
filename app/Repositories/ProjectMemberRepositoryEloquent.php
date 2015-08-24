@@ -5,6 +5,7 @@ namespace GeProj\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use GeProj\Entities\ProjectMember;
+use GeProj\Presenters\ProjectMemberPresenter;
 
 /**
  * Class ProjectMemberRepositoryEloquent
@@ -29,4 +30,9 @@ class ProjectMemberRepositoryEloquent extends BaseRepository implements ProjectM
     {
         $this->pushCriteria( app(RequestCriteria::class) );
     }
+
+//    public function presenter()
+//    {
+//        return ProjectMemberPresenter::class;
+//    }
 }

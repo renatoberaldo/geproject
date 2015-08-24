@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
 
 Route:post('oauth/access_token', function(){
@@ -20,7 +20,7 @@ Route:post('oauth/access_token', function(){
 });
 
 
-//Route::group(['middleware'=>'oauth'], function() {
+Route::group(['middleware'=>'oauth'], function() {
 
     Route::resource('client', 'ClientController', ['except' => ['create', 'edit']]);
     Route::resource('project', 'ProjectController', ['except' => ['create', 'edit']]);
@@ -44,8 +44,11 @@ Route:post('oauth/access_token', function(){
 
         Route::post('{id}/file', 'ProjectFileController@store');
 
-        Route::get('{id}/members', 'ProjectController@showMembers');
+        Route::get('{id}/member', 'ProjectController@showMembers');
+        Route::post('{id}/member', 'ProjectController@addMember');
+        Route::delete('{id}/member/{memberId}', 'ProjectController@removeMember');
+        Route::get('{id}/member/{memberId}', 'ProjectController@isMember');
 
     });
 
-//});
+});

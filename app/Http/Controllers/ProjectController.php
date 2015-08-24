@@ -94,6 +94,36 @@ class ProjectController extends Controller
         return $this->service->showMembers($id);
     }
 
+    public function addMember(Request $request, $id)
+    {
+        if($this->checkProjectOwner($id) == false){
+            return ['error' => 'Access Forbidden, , just the owner can add members'];
+        }
+
+        $data = ['project_id'=>$id, 'member_id'=>$request['member_id']];
+        return $this->service->addMember($data);
+    }
+
+    public function removeMember($id, $memberId)
+    {
+        if($this->checkProjectOwner($id) == false){
+            return ['error' => 'Access Forbidden, just the owner can remove members'];
+        }
+
+        $data = ['project_id'=>$id, 'member_id'=>$memberId];
+        return $this->service->removeMember($data);
+    }
+
+    public function isMember($id, $memberId)
+    {
+        $data = ['project_id'=>$id, 'member_id'=>$memberId];
+
+        if ($this->service->isMember($data)){
+            return ['isMember' => 'true'];
+        }
+
+        return ['isMember' => 'false'];
+    }
 
     private function checkProjectOwner($projectId)
     {

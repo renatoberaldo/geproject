@@ -1,12 +1,17 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: motamonteiro
+ * Date: 05/08/15
+ * Time: 23:22
+ */
 
 namespace GeProj\Transformers;
 
 use GeProj\Entities\ProjectNote;
 use League\Fractal\TransformerAbstract;
 
-class ClientTransformer extends TransformerAbstract
+class ProjectNoteTransformer extends TransformerAbstract
 {
 
     public function transform(ProjectNote $projectNote)
